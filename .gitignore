@@ -1,0 +1,13 @@
+# Dependencias / build
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.log

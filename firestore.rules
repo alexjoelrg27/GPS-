@@ -1,0 +1,19 @@
+rules_version = '2';
+
+// Reglas de seguridad de Firestore para la coleccion "gps".
+// - Solo usuarios autenticados (incluye anonimos) pueden leer.
+// - Solo pueden crear/editar/borrar puntos cuyo "uid" sea el suyo.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /gps/{docId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+    }
+
+  }
+}

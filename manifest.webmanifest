@@ -1,0 +1,14 @@
+{
+  "name": "GPS Live",
+  "short_name": "GPS Live",
+  "description": "Rastreo GPS en tiempo real guardado en Firestore",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

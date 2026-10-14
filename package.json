@@ -1,0 +1,10 @@
+{
+  "name": "gps-live",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Rastreo GPS en tiempo real con Leaflet + OpenStreetMap",
+  "scripts": {
+    "test": "node --check js/app.js && node --check js/config.js && node tests/check.mjs"
+  }
+}

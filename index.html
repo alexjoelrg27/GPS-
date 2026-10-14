@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>GPS Live</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8D%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="map" aria-label="Mapa"></div>
+
+    <header class="topbar glass">
+      <div class="topbar__left">
+        <span id="dot" class="dot dot--off"></span>
+        <div class="topbar__text">
+          <strong id="authStatus">Conectando…</strong>
+          <small id="gpsStatus">GPS inactivo</small>
+        </div>
+      </div>
+      <div class="topbar__badge" id="accBadge">± — m</div>
+    </header>
+
+    <button id="followBtn" class="fab fab--follow" title="Centrar en mí" aria-label="Centrar en mí">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm8.94 3A9 9 0 0 0 13 3.06V1h-2v2.06A9 9 0 0 0 3.06 11H1v2h2.06A9 9 0 0 0 11 20.94V23h2v-2.06A9 9 0 0 0 20.94 13H23v-2h-2.06ZM12 19a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/>
+      </svg>
+    </button>
+
+    <button id="layersBtn" class="fab fab--layers" title="Tipo de mapa" aria-label="Tipo de mapa">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor" d="m12 2 9 5-9 5-9-5 9-5Zm9 9-9 5-9-5 9-5 9 5Zm-9 7 9-5v2l-9 5-9-5v-2l9 5Z"/>
+      </svg>
+    </button>
+
+    <section class="sheet glass" id="sheet">
+      <div class="sheet__handle" id="sheetHandle"></div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__val" id="statSpeed">0.0</span>
+          <span class="stat__unit">km/h</span>
+        </div>
+        <div class="stat">
+          <span class="stat__val" id="statDist">0.00</span>
+          <span class="stat__unit">km</span>
+        </div>
+        <div class="stat">
+          <span class="stat__val" id="statAlt">—</span>
+          <span class="stat__unit">alt m</span>
+        </div>
+        <div class="stat">
+          <span class="stat__val" id="statTime">00:00</span>
+          <span class="stat__unit">tiempo</span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span id="metaPoints">0 puntos</span>
+        <span class="meta__sep">•</span>
+        <span id="metaSession">Sin sesión</span>
+      </div>
+
+      <div class="actions">
+        <button id="toggleBtn" class="btn btn--primary">Iniciar rastreo</button>
+        <button id="centerBtn" class="btn btn--ghost" title="Ir a mi ubicación" aria-label="Ir a mi ubicación">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="overlay" class="overlay">
+      <div class="spinner"></div>
+      <p id="overlayText">Cargando…</p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
